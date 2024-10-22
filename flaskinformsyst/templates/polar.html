@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask App</title>
+    <style>
+        .container {
+            border: 1px solid #000000;
+            overflow-x: auto; /* Добавляет прокрутку по горизонтали, если изображения не помещаются */
+            white-space: nowrap; /* Запрещает перенос строк */
+            padding: 10px; /* Отступ внутри контейнера */
+        }
+        .image-container {
+            display: inline-block; /* Позволяет изображению отображаться в строку */
+            text-align: center; /* Центрирует текст под изображением */
+            margin-right: 20px; /* Отступ между изображениями */
+        }
+        img {
+            height: 400px; /* Фиксированная высота изображений */
+            width: auto; /* Сохраняет пропорции изображений */
+        }
+    </style>
+</head>
+<body>
+<form method="POST" action="/gr">
+<div class="container" style="height:670px; width: 500px">
+    {% for image in images %}
+    <div class="image-container">
+    <p style="center">t={{ (loop.index0  * 0.25) | round(2) }}</p>
+    <img src="data:image/png;base64,{{ image }}" height="400"/>
+        </div>
+{% endfor %}
+<!--    <img src='data:image/png;base64,{{ data }}' alt="график"/>-->
+
+</div>
+    <div class="button-container">
+    <button id="bottom-button" name="action" value="coef" >коэффициенты</button>
+    </div>
+</form>
+</body>
